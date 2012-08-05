@@ -33,6 +33,7 @@ module AdvancedAuth
 			Group.class_eval &app.config.advanced_auth.group_mixin unless app.config.advanced_auth.group_mixin.nil?
 			User.class_eval &app.config.advanced_auth.user_mixin unless app.config.advanced_auth.user_mixin.nil?
 			UserGroup.class_eval &app.config.advanced_auth.ug_mixin unless app.config.advanced_auth.ug_mixin.nil?
+			Invite.class_eval &Rails.configuration.advanced_auth.invite_mixin unless Rails.configuration.advanced_auth.invite_mixin.nil?
 		end
 		
 	end

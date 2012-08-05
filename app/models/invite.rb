@@ -28,11 +28,12 @@ class Invite < ActiveRecord::Base
 	
 	def generate_secret
 		self.secret = Digest::SHA1.hexdigest([Time.now, rand].join)
+		self.expires = 2.months.from_now if self.expires.nil?
 	end
 	
 	
 	def send_email
-		InviteEmail.invite_email(self).deliver
+		InviteMailer.invite_email(self).deliver
 	end
 	
 	
@@ -41,3 +42,6 @@ class Invite < ActiveRecord::Base
 	validates_uniqueness_of :email
 	validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
 end
+
+
+Invite.class_eval &Rails.configuration.advanced_auth.invite_mixin unless Rails.configuration.advanced_auth.invite_mixin.nil?

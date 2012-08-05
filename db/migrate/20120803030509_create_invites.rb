@@ -6,6 +6,7 @@ class CreateInvites < ActiveRecord::Migration
 		t.string :email
 		t.string :secret
 		t.datetime :expires
+		t.text :message
 		
       t.timestamps
     end

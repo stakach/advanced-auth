@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration
 			t.string :timezone
 			t.integer :login_count
 			t.boolean :system_admin
-			t.text	:notes
 			t.timestamps
 		end
 	end

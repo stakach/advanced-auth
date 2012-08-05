@@ -4,6 +4,7 @@ class CreateUserGroups < ActiveRecord::Migration
 		t.integer :user_id
 		t.integer :group_id
 		t.integer :permissions
+		t.text		:notes
       t.timestamps
     end
   end
