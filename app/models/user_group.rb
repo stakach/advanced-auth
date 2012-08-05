@@ -1,5 +1,6 @@
 class UserGroup < ActiveRecord::Base
-	has_many :groups
+	belongs_to :group
+	belongs_to :user
 	
 	attr_accessible :user_id, :group_id, :permissions
 	
