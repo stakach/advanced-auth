@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
 	
 	
+	layout :auth_layout
 	protect_from_forgery :except => [:create, :failure]
 	
 	
 	def new
-		#
-		# TODO:: Check if a session exists and redirect if it does
-		#
+		if current_user
+			instance_eval &Rails.configuration.advanced_auth.redirection
+		end
 	end
 	
 	def create
@@ -21,7 +22,7 @@ class SessionsController < ApplicationController
 			end
 			reset_session
 			session[:user_id] = auth.user.id
-			redirect_to authentications_path, notice: "Signed in!"		# TODO :: redirect to the same path as new
+			&Rails.configuration.advanced_auth.redirection
 		elsif current_user
 			current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
 			flash[:notice] = "Authentication successful."
@@ -47,7 +48,11 @@ class SessionsController < ApplicationController
 	end
 
 	def failure
-		reset_session
-		redirect_to root_path, alert: "Authentication failed, please try again."
+		if current_invite
+			redirect_to invite_path(current_invite.id), alert: "Authentication failed, please try again."
+		else
+			reset_session
+			redirect_to root_path, alert: "Authentication failed, please try again."
+		end
 	end
 end

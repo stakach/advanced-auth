@@ -1,6 +1,7 @@
 class IdentitiesController < ApplicationController
 	
 	
+	layout :auth_layout
 	before_filter :authorise
 	
 	

@@ -12,7 +12,7 @@ module AdvancedAuth
 			#app.config.advanced_auth.user_mixin
 			#app.config.advanced_auth.ug_mixin
 			app.config.advanced_auth.redirection = proc { redirect_to authentications_path }
-			app.config.advanced_auth.default_title = "Login"
+			app.config.advanced_auth.login_title = "Login"
 			app.config.advanced_auth.invite_title = "Invite"
 		end
 		

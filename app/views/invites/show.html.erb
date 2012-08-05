@@ -1,14 +1,18 @@
-<% content_for :title, "Signage Invite" %>
+<% content_for :title, Rails.configuration.advanced_auth.invite_title %>
 
 <% if current_invite.present? %>
 	<p><strong>You have been invited to join the Signage Group: <%= current_invite.group.identifier %></strong></p>
-	<p>
-		<%= link_to "Join Group", authentications_path %> - <%= link_to "Reject the Invite", invite_path(current_invite.id), :method => :delete %>
-	</p>
 	<% if current_user.present? %>
 		<p>
+			<%= link_to "Join Group", invite_path(current_invite.id), :method => :post %> - <%= link_to "Reject the Invite", invite_path(current_invite.id), :method => :delete %>
+		</p>
+		<p>
 			<strong>Not <%= current_user.firstname %> of <%= current_user.email %></strong><br />
-			<%= link_to "Sign out", invite_path(current_invite.id), :method => :put %>
+			<%= link_to "Change Account", invite_path(current_invite.id), :method => :put %>
+		</p>
+	<% else %>
+		<p>
+			<%= link_to "Join Group", authentications_path %> - <%= link_to "Reject the Invite", invite_path(current_invite.id), :method => :delete %>
 		</p>
 	<% end %>
 <% else %>

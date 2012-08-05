@@ -1,5 +1,9 @@
 class InvitesController < ApplicationController
 	
+	
+	layout :auth_layout
+	
+	
 	#
 	# Do you want to accept?
 	# Is this you?
@@ -12,6 +16,22 @@ class InvitesController < ApplicationController
 			end
 		end
 	end
+	
+	
+	def create
+		if current_invite && current_user
+			User.transaction do
+				current_invite.add_to_group(current_user)
+			end
+			
+			instance_eval &Rails.configuration.advanced_auth.redirection
+		else
+			
+			reset_session
+			redirect_to root_path
+		end
+	end
+	
 	
 	#
 	# The current user is not me

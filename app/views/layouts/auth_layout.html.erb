@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= content_for?(:title) ? yield(:title) : "ACA Signage" %></title>
+		<title><%= content_for?(:title) ? yield(:title) : Rails.configuration.advanced_auth.login_title %></title>
 		<%= stylesheet_link_tag    "application" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tag %>
