@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = AdvancedAuth::VERSION
   s.authors     = ["Stephen von Takach"]
   s.email       = ["steve@advancedcontrol.com.au"]
-  s.homepage    = "TODO"
+  s.homepage    = "http://advancedcontrol.com.au/"
   s.summary     = "ACA's primrary authentication module"
   s.description = "An authenticator based on Omniauth"
 

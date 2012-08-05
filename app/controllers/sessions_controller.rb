@@ -1,14 +1,15 @@
-class SessionsController < ApplicationController
+class SessionsController < AuthController
 	
 	
-	layout :auth_layout
 	protect_from_forgery :except => [:create, :failure]
+	
+	layout 'auth_layout'
 	
 	
 	def new
-		if current_user
-			instance_eval &Rails.configuration.advanced_auth.redirection
-		end
+		#if current_user.present?
+		#	instance_eval &Rails.configuration.advanced_auth.redirection
+		#end
 	end
 	
 	def create
@@ -22,7 +23,7 @@ class SessionsController < ApplicationController
 			end
 			reset_session
 			session[:user] = auth.user.id
-			&Rails.configuration.advanced_auth.redirection
+			instance_eval &Rails.configuration.advanced_auth.redirection
 		elsif current_user
 			current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
 			flash[:notice] = "Authentication successful."

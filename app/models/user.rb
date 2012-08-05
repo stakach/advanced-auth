@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :authentications
+	has_many :user_groups
+	has_many :groups,	:through => :user_groups
 	
 	
 	attr_accessible :email, :firstname, :lastname, :timezone, :notes

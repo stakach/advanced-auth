@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title><%= content_for?(:title) ? yield(:title) : Rails.configuration.advanced_auth.login_title %></title>
-		<%= stylesheet_link_tag    "application" %>
-		<%= javascript_include_tag "application" %>
+		<%= stylesheet_link_tag    "advanced_auth/application" %>
+		<%= javascript_include_tag "advanced_auth/application" %>
 		<%= csrf_meta_tag %>
 		<%= yield(:head) %>
 	</head>

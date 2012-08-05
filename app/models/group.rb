@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+	has_many	:invites
+	
 	attr_accessible :identifier, :description, :timezone, :domain, :notes, :parent_id
 	
 	

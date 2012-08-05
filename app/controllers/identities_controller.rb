@@ -1,7 +1,7 @@
-class IdentitiesController < ApplicationController
+class IdentitiesController < AuthController
 	
 	
-	layout :auth_layout
+	layout 'auth_layout'
 	before_filter :authorise
 	
 	

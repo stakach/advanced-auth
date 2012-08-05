@@ -1,7 +1,7 @@
-class InvitesController < ApplicationController
+class InvitesController < AuthController
 	
 	
-	layout :auth_layout
+	layout 'auth_layout'
 	
 	
 	#
