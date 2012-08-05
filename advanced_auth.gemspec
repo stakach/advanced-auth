@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency "omniauth-google-apps"
   s.add_dependency "omniauth-identity"
   s.add_dependency "omniauth-openid"
+  s.add_dependency "closure_tree"
 
 
   s.add_development_dependency "sqlite3"
