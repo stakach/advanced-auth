@@ -5,6 +5,7 @@ class UserGroup < ActiveRecord::Base
 	attr_accessible :user_id, :group_id, :permissions, :notes
 	
 	validates_presence_of :user_id, :group_id, :permissions
+	validates :user_id, :uniqueness => {:scope => :group_id,	:message => "This user is already a group member"}
 end
 
 

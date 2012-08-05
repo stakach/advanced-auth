@@ -4,7 +4,7 @@
 	<p><strong>You have been invited to join the Signage Group: <%= current_invite.group.identifier %></strong></p>
 	<% if current_user.present? %>
 		<p>
-			<%= link_to "Join Group", invite_path(current_invite.id), :method => :post %> - <%= link_to "Reject the Invite", invite_path(current_invite.id), :method => :delete %>
+			<%= link_to "Join Group", invites_path, :method => :post %> - <%= link_to "Reject the Invite", invite_path(current_invite.id), :method => :delete %>
 		</p>
 		<p>
 			<strong>Not <%= current_user.firstname %> of <%= current_user.email %></strong><br />
