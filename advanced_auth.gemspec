@@ -7,8 +7,8 @@ require "advanced_auth/version"
 Gem::Specification.new do |s|
   s.name        = "advanced_auth"
   s.version     = AdvancedAuth::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Stephen von Takach"]
+  s.email       = ["steve@advancedcontrol.com.au"]
   s.homepage    = "TODO"
   s.summary     = "ACA's primrary authentication module"
   s.description = "An authenticator based on Omniauth"
