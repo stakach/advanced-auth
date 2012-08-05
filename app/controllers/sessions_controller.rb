@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 				end
 			end
 			reset_session
-			session[:user_id] = auth.user.id
+			session[:user] = auth.user.id
 			&Rails.configuration.advanced_auth.redirection
 		elsif current_user
 			current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
 				user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
 			end
 			reset_session
-			session[:user_id] = user.id
+			session[:user] = user.id
 			redirect_to authentications_path, notice: "Signed in!"
 		else
 			failure
@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		session[:user_id] = nil
+		session[:user] = nil
 		reset_session
 		redirect_to root_path, notice: "Signed out!"
 	end

@@ -6,7 +6,7 @@ class AuthenticationsController < ApplicationController
 	
 	
 	def index
-		@authentications = session[:user_id].present? ? current_user.authentications : []		# We do want to use user_id here!
+		@authentications = session[:user].present? ? current_user.authentications : []		# We do want to use user_id here!
 	end
 	
 	def destroy
