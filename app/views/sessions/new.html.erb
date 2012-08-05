@@ -11,9 +11,17 @@
 		<%= image_tag "advanced_auth/facebook_64.png", size: "64x64", alt: "Facebook" %>
 		Facebook
 	</a>
-	<a href="/auth/google_apps" class="auth_provider">
-		<%= image_tag "advanced_auth/google_apps_64.png", size: "64x64", alt: "Google" %>
+	<a href="/auth/open_id?openid_url=https://www.google.com/accounts/o8/id" class="auth_provider">
+		<%= image_tag "advanced_auth/google_64.png", size: "64x64", alt: "Google" %>
 		Google
+	</a>
+	<a href="/auth/open_id?openid_url=https://me.yahoo.com" class="auth_provider">
+		<%= image_tag "advanced_auth/yahoo_64.png", size: "64x64", alt: "Yahoo" %>
+		Yahoo
+	</a>
+	<a href="/auth/open_id?openid_url=https://openid.aol.com/" class="auth_provider">
+		<%= image_tag "advanced_auth/aol_64.png", size: "64x64", alt: "AOL" %>
+		AOL
 	</a>
 	<a href="/auth/open_id" class="auth_provider">
 		<%= image_tag "advanced_auth/open_id_64.png", :size => "64x64", :alt => "OpenID" %>

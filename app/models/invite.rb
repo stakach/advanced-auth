@@ -6,6 +6,7 @@ class Invite < ActiveRecord::Base
 	
 	
 	before_create :generate_secret
+	after_create :send_email
 	
 	
 	def create_user
@@ -27,6 +28,11 @@ class Invite < ActiveRecord::Base
 	
 	def generate_secret
 		self.secret = Digest::SHA1.hexdigest([Time.now, rand].join)
+	end
+	
+	
+	def send_email
+		InviteEmail.invite_email(self).deliver
 	end
 	
 	

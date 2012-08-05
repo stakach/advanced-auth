@@ -7,9 +7,9 @@ class SessionsController < AuthController
 	
 	
 	def new
-		#if current_user.present?
-		#	instance_eval &Rails.configuration.advanced_auth.redirection
-		#end
+		if current_user.present?
+			instance_eval &Rails.configuration.advanced_auth.redirection
+		end
 	end
 	
 	def create

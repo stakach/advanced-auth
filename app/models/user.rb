@@ -22,3 +22,7 @@ class User < ActiveRecord::Base
 		self.authentications.where(:provider => 'identity').update_all(:email => self.email)
 	end
 end
+
+
+User.class_eval &Rails.configuration.advanced_auth.user_mixin unless Rails.configuration.advanced_auth.user_mixin.nil?
+

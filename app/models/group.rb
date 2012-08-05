@@ -11,3 +11,5 @@ class Group < ActiveRecord::Base
 	
 	validates_presence_of :description
 end
+
+Group.class_eval &Rails.configuration.advanced_auth.group_mixin unless Rails.configuration.advanced_auth.group_mixin.nil?
