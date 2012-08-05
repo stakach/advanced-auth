@@ -19,9 +19,9 @@ module AdvancedAuth
 		
 		initializer 'advanced_auth.middleware' do |app|
 			
-			OmniAuth.config.logger = Rails.logger
+			::OmniAuth.config.logger = Rails.logger
 			
-			app.config.middleware.use OmniAuth::Builder do
+			app.config.middleware.use ::OmniAuth::Builder do
 				require 'openid/store/filesystem'
 				
 				provider :developer unless Rails.env.production?
