@@ -1,0 +1,19 @@
+<% content_for :title, "Signage Invite" %>
+
+<% if current_invite.present? %>
+	<p><strong>You have been invited to join the Signage Group: <%= current_invite.group.identifier %></strong></p>
+	<p>
+		<%= link_to "Join Group", authentications_path %> - <%= link_to "Reject the Invite", invite_path(current_invite.id), :method => :delete %>
+	</p>
+	<% if current_user.present? %>
+		<p>
+			<strong>Not <%= current_user.firstname %> of <%= current_user.email %></strong><br />
+			<%= link_to "Sign out", invite_path(current_invite.id), :method => :put %>
+		</p>
+	<% end %>
+<% else %>
+	<p>
+		<strong>Sorry this invite is no longer valid. Please request it to be re-issued.</strong><br />
+		<%= link_to "Back to signage", root_path %>
+	</p>
+<% end %>
