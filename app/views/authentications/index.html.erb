@@ -1,4 +1,42 @@
-<% content_for :title, "Sign In Options" %>
+<% content_for :title, "My Account" %>
+
+
+<%= image_tag "logo.png", alt: "ACA" %>
+
+
+<% if current_user.present? %>
+	<%= link_to "<< Back to Signage", medias_path, :style => "float:right;" %>
+	<p><strong>Your current details:</strong></p>
+	<% if current_user && current_user.errors.any? %>
+		<div class="error_messages">
+			<h2><%= pluralize(current_user.errors.count, "error") %> prohibited this from being saved:</h2>
+			<ul>
+				<% current_user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<%= form_for(current_user, {:url => authentication_path(current_user.id), :method => :put}) do |f| %>
+		<table>
+			<tr>
+				<td class="desc">Name:</td>
+				<td><%= f.text_field :name %></td>
+			</tr>
+			<tr>
+				<td class="desc"><%= f.label :email %>*:</td>
+				<td><%= f.text_field :email %></td>
+			</tr>
+			<tr>
+				<td class="desc"><%= f.label :timezone, t(:user_edit_timezone) %>:</td>
+				<td><%= f.time_zone_select(:timezone, nil, :default => current_user.timezone) %></td>
+			</tr>
+		</table>
+		<%= f.submit t(:update) %>
+	<% end %>
+
+<% end %>
+
 
 <% if @authentications.present? %>
 	<p><strong>You have signed in with these services:</strong></p>
@@ -46,7 +84,7 @@
 
 <p>
 	<strong>You can also</strong>
-	<%= link_to "Create an account", new_identity_path %>
+	<%= link_to "Create an ACA account", new_identity_path %>
 	<strong>or</strong>
 	<%= link_to "Log out", logout_path %>
 </p>

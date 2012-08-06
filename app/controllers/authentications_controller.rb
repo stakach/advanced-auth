@@ -2,7 +2,8 @@ class AuthenticationsController < AuthController
 	
 	
 	layout 'auth_layout'
-	before_filter :authorise
+	before_filter :authorise, :only => :index
+	before_filter :check_user, :except => :index
 	
 	
 	def index
@@ -18,6 +19,14 @@ class AuthenticationsController < AuthController
 	
 	
 	
+	def update
+		current_user.update_attributes(params[:user])
+		index
+		render :index
+	end
+	
+	
+	
 	private
 	
 	
@@ -26,6 +35,13 @@ class AuthenticationsController < AuthController
 	#
 	def authorise
 		if current_user.nil? && current_invite.nil?
+			reset_session
+			redirect_to root_path, alert: "Authentication failed, please try again."
+		end
+	end
+	
+	def check_user
+		if current_user.nil?
 			reset_session
 			redirect_to root_path, alert: "Authentication failed, please try again."
 		end
