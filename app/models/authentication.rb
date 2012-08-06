@@ -28,6 +28,9 @@ class Authentication < ActiveRecord::Base
 		if provider.to_sym == :identity
 			Identity.find(self.uid).destroy
 		end
+		if !self.user.authentications.exists?
+			self.user.destroy
+		end
 	end
 	
 end

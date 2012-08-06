@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
 	has_many	:invites
-	has_many	:user_groups
+	has_many	:user_groups,	:dependent => :destroy
 	has_many 	:users,	:through => :user_groups
 	
 	attr_accessible :identifier, :description, :timezone, :domain, :notes, :parent_id
