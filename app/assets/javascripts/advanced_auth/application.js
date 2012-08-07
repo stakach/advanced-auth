@@ -13,3 +13,27 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+
+(function($, global) {
+	
+	//
+	// Wait for jQuery to load
+	//
+	var difference;
+	
+	$(function() {
+		var content = $('#container'),
+			wind = $(window);
+		
+		wind.resize(function(){
+			difference = (wind.height() - (content.height() + 50)) / 2;
+			if (difference > 0)
+				content.css('margin-top', difference + 'px');
+		}).resize();
+		
+	});
+	
+})(jQuery, this);
+

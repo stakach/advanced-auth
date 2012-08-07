@@ -2,6 +2,10 @@ body {
   background-color: #BE0A00;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+  
+  overflow: hidden;
 }
 
 a img {
@@ -18,15 +22,48 @@ a {
   overflow: hidden;
 }
 
+iframe {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	
+	width: 100%;
+	height: 100%;
+	
+	z-index: -1;
+}
+
+#container-wrapper {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	
+	overflow: auto;
+	
+	text-align:center;
+}
+
+
 #container {
-  width: 75%;
-  min-width: 600px;
+  width: 600px;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
-  margin-top: 20px;
   position: relative;
+  
+  border-radius: 8px;
+  
+  text-align:left;
+  background-color: rgba(255,255,255,0.9);
 }
 
 #flash_notice, #flash_error, #flash_alert {

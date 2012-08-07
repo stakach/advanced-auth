@@ -1,4 +1,4 @@
-<h1>Sign In</h1>
+<h1>ACA Signage</h1>
 
 <p><strong>Sign in through one of these services:</strong></p>
 
@@ -32,7 +32,7 @@
 <p>
 <strong>Don't use these services?</strong>
 </p>
-  
+<div class="clear"></div>
 <%= form_tag "/auth/identity/callback" do %>
 	<div class="field">
 		<%= label_tag :auth_key, "Email" %><br>
@@ -42,5 +42,6 @@
 		<%= label_tag :password %><br>
 		<%= password_field_tag :password %>
 	</div>
+	<div class="clear"></div>
 	<div class="actions"><%= submit_tag "Login" %></div>
 <% end %>
