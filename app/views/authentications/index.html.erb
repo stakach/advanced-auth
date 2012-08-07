@@ -83,8 +83,10 @@
 <div class="clear"></div>
 
 <p>
-	<strong>You can also</strong>
-	<%= link_to "Create an ACA account", new_identity_path %>
-	<strong>or</strong>
+	<% if current_user.nil? || !current_user.authentications.where(:provider => 'identity').exists? %>
+		<strong>You can also</strong>
+		<%= link_to "Create an ACA account", new_identity_path %>
+		<strong>or</strong>
+	<% end %>
 	<%= link_to "Log out", logout_path %>
 </p>
