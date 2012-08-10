@@ -2,7 +2,7 @@ class Invite < ActiveRecord::Base
 	belongs_to :group
 	
 	
-	attr_accessible :email, :group_id
+	attr_accessible :email, :group_id, :expires
 	
 	
 	before_create :generate_secret
@@ -33,7 +33,7 @@ class Invite < ActiveRecord::Base
 	
 	
 	def send_email
-		InviteMailer.invite_email(self).deliver
+		InviteMailer.delay.invite_email(self)
 	end
 	
 	
