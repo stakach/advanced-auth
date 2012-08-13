@@ -33,7 +33,7 @@ class Invite < ActiveRecord::Base
 	
 	
 	def send_email
-		InviteMailer.delay.invite_email(self)
+		InviteMailer.delay(:queue => 'mail').invite_email(self)
 	end
 	
 	
