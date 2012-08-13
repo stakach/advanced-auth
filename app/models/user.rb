@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :authentications
-	has_many :user_groups,	:dependent => :destroy
+	has_many :authentications,	:dependent => :destroy
+	has_many :user_groups,		:dependent => :destroy
 	has_many :groups,	:through => :user_groups
 	
 	
