@@ -48,6 +48,7 @@ module AdvancedAuth
 		module InstanceMethods
 			def current_user
 				@current_user ||= User.find(session[:user]) if session[:user]
+				@current_user
 			rescue
 				reset_session
 				nil
@@ -55,6 +56,7 @@ module AdvancedAuth
 			
 			def current_invite
 				@current_invite ||= Invite.find(session[:invite_id]) if session[:invite_id]
+				@current_invite
 			rescue
 				reset_session
 				nil
