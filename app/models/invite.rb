@@ -16,8 +16,9 @@ class Invite < ActiveRecord::Base
 	end
 	
 	def add_to_group(user)
-		UserGroup.find_or_create_by_user_id_and_group_id(:user_id => user.id, :group_id => group_id, :permissions => permissions, :notes => message)
+		ug = UserGroup.find_or_create_by_user_id_and_group_id(:user_id => user.id, :group_id => group_id, :permissions => permissions, :notes => message)
 		self.destroy
+		ug
 	end
 	
 	
