@@ -14,7 +14,7 @@
 	<!--
 		IE9 / Chrome helpers
 	 -->
-	<meta name="application-name" content="<%= t(:sydney_signage) %>" />
+	<meta name="application-name" content="ACA Signage" />
 	<meta name="description" content="<%= t(:signage_solution) %>"/>
 	
 	<meta name="msapplication-tooltip" content="<%= t(:signage_solution) %>" />
@@ -25,37 +25,17 @@
 
 <h1>ACA Signage</h1>
 
-<p><strong>Sign in through one of these services:</strong></p>
+<p><strong>Sign in:</strong></p>
 
 <div class="auth_providers">
-	<a href="/auth/twitter" class="auth_provider">
-		<%= image_tag "advanced_auth/twitter_64.png", size: "64x64", alt: "Twitter" %>
-		Twitter
-	</a>
-	<a href="/auth/facebook" class="auth_provider">
-		<%= image_tag "advanced_auth/facebook_64.png", size: "64x64", alt: "Facebook" %>
-		Facebook
-	</a>
-	<a href="/auth/open_id?openid_url=https://www.google.com/accounts/o8/id" class="auth_provider">
-		<%= image_tag "advanced_auth/google_64.png", size: "64x64", alt: "Google" %>
-		Google
-	</a>
-	<a href="/auth/open_id?openid_url=https://me.yahoo.com" class="auth_provider">
-		<%= image_tag "advanced_auth/yahoo_64.png", size: "64x64", alt: "Yahoo" %>
-		Yahoo
-	</a>
-	<a href="/auth/open_id?openid_url=https://openid.aol.com/" class="auth_provider">
-		<%= image_tag "advanced_auth/aol_64.png", size: "64x64", alt: "AOL" %>
-		AOL
-	</a>
-	<a href="/auth/open_id" class="auth_provider">
-		<%= image_tag "advanced_auth/open_id_64.png", :size => "64x64", :alt => "OpenID" %>
-		OpenID
+	<a href="/auth/ldap" class="auth_provider">
+		<%= image_tag "advanced_auth/logo.jpg", alt: "Riverview" %>
+		Riverview
 	</a>
 </div>
-  
+ <div class="clear"></div>
 <p>
-<strong>Don't use these services?</strong>
+<strong>Local account?</strong>
 </p>
 <div class="clear"></div>
 <%= form_tag "/auth/identity/callback" do %>

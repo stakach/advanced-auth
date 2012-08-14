@@ -13,6 +13,9 @@ class SessionsController < AuthController
 	end
 	
 	def create
+		
+		#render :text => env["omniauth.auth"]['extra']['raw_info']['memberof'].to_json, :layout => false
+		#return
 		omniauth = env["omniauth.auth"]
 		auth = Authentication.from_omniauth(omniauth)
 		if auth
@@ -37,6 +40,27 @@ class SessionsController < AuthController
 			reset_session
 			session[:user] = user.id
 			redirect_to authentications_path, notice: "Signed in!"
+		elsif omniauth['provider'] == 'ldap'
+			groups = omniauth['extra']['raw_info']['memberof'].map {|e| /CN=([^,]+?)[,$]/i.match(e).captures.first }
+			
+			if groups.present?
+				if Group.where('identifier IN (?)', groups).exists?
+					User.transaction do
+						email = omniauth['info']['email'] if omniauth['info']['email'].present?
+						email ||= omniauth['extra']['raw_info']['userprincipalname']
+						user = User.find_or_create_by_email(:email => email, :firstname => omniauth['info']['first_name'], :lastname => omniauth['info']['last_name'])
+						Group.where('identifier IN (?)', groups).find_each do |group|
+							ug = UserGroup.find_or_create_by_user_id_and_group_id(:group_id => group.id, :user_id => user.id, :permissions => 0)
+						end
+					end
+					
+					reset_session
+					session[:user] = user.id
+					redirect_to authentications_path, notice: "Signed in!"
+				else
+					failure
+				end
+			end
 		else
 			failure
 		end
