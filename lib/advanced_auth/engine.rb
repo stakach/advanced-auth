@@ -14,6 +14,7 @@ module AdvancedAuth
 			app.config.advanced_auth.redirection = proc { redirect_to authentications_path }
 			app.config.advanced_auth.login_title = "Login"
 			app.config.advanced_auth.invite_title = "Invite"
+			app.config.advanced_auth.org_name = "LDAP"
 		end
 		
 		

@@ -9,6 +9,8 @@ class SessionsController < AuthController
 	def new
 		if current_user.present?
 			instance_eval &Rails.configuration.advanced_auth.redirection
+		else
+			@org = Rails.configuration.advanced_auth.org_name
 		end
 	end
 	

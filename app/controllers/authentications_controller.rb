@@ -7,6 +7,7 @@ class AuthenticationsController < AuthController
 	
 	
 	def index
+		@org = Rails.configuration.advanced_auth.org_name
 		@authentications = session[:user].present? ? current_user.authentications : []		# We do want to use user_id here!
 	end
 	

@@ -2,7 +2,7 @@ class Invite < ActiveRecord::Base
 	belongs_to :group
 	
 	
-	attr_accessible :email, :group_id, :expires
+	attr_accessible :email, :group_id, :expires, :message
 	
 	
 	before_create :generate_secret
