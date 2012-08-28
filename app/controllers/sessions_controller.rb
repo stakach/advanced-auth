@@ -51,6 +51,7 @@ class SessionsController < AuthController
 						email = omniauth['info']['email'] if omniauth['info']['email'].present?
 						email ||= omniauth['extra']['raw_info']['userprincipalname']
 						user = User.find_or_create_by_email(:email => email, :firstname => omniauth['info']['first_name'], :lastname => omniauth['info']['last_name'])
+						user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
 						Group.where('identifier IN (?)', groups).find_each do |group|
 							ug = UserGroup.find_or_create_by_user_id_and_group_id(:group_id => group.id, :user_id => user.id, :permissions => 0)
 						end
