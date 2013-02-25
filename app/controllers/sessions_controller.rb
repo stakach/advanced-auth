@@ -19,6 +19,8 @@ class SessionsController < AuthController
 		#render :text => env["omniauth.auth"]['extra']['raw_info']['memberof'].to_json, :layout => false
 		#return
 		omniauth = env["omniauth.auth"]
+		omniauth["uid"] = /CN=([^,]+?)[,$]/i.match(omniauth["uid"]).captures.first if omniauth['provider'] == 'ldap'
+		
 		auth = Authentication.from_omniauth(omniauth)
 		if auth
 			if current_invite
